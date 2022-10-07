@@ -8,12 +8,7 @@
     Departments:
     {% for department in departments_list %}
         <li>
-            <a href="/department/{{ department.id }}">{{ department.name }}</a>
-            [Employees:
-            {% for employee in department.employee_set.all %}
-                {{ employee.name }}
-            {% endfor %}
-            ]
+            <a href="{% url 'company:dep_by_id' department.id %}">{{ department.name }}</a>
         </li>
     {% endfor %}
 
