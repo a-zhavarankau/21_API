@@ -5,14 +5,14 @@
     <title>Department</title>
 </head>
 <body>
-    Department data:
+    Department info:
         <li>id: {{ department.id }}</li>
         <li>name: {{ department.name }}</li>
         <li>create_date: {{ department.create_date }}</li>
         <li>employees in '{{ department.name }}':
             [{% for employee in department.employee_set.all %}
-                {{ employee.name }}]
-            {% endfor %}
+                <a href="{% url 'company:empl_by_id' employee.id %}">{{ employee.name }} ({{ employee.id }})</a>,
+            {% endfor %}]
         </li>
 
 </body>

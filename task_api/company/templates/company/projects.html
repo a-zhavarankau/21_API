@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects</title>
+</head>
+<body>
+    Projects in company:
+    {% for project in projects_list %}
+        <li>
+            <a href="{% url 'company:proj_by_id' project.id %}">{{ project.name }}</a>
+        </li>
+    {% endfor %}
+
+</body>
+</html>

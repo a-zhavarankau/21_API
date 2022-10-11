@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee</title>
+</head>
+<body>
+    Employee info:
+        <li>id: {{ employee.id }}</li>
+        <li>name: {{ employee.name }}</li>
+        <li>surname: {{ employee.surname }}</li>
+        <li>login: {{ employee.login }}</li>
+        <li>create_date: {{ employee.create_date }}</li>
+        <li>role: {{ employee.employee_role }}</li>
+        <li>salary: {{ employee.salary }}</li>
+        <li>department:
+        <a href="{% url 'company:dep_by_id' employee.department.id %}">
+            {{ employee.department }}</a></li>
+        <li>last_login_date: {{ employee.last_login_date }}</li>
+        <li>created_date: {{ employee.created_date }}</li>
+        <li>employee's projects:
+            [{% for project in employee.projects.all %}
+                <a href="{% url 'company:proj_by_id' project.id %}">{{ project.name }} ({{ project.id }})</a>,
+            {% endfor %}]
+
+        </li>
+
+</body>
+</html>

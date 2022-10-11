@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project</title>
+</head>
+<body>
+    Project info:
+        <li>id: {{ project.id }}</li>
+        <li>name: {{ project.name }}</li>
+        <li>description: {{ project.description }}</li>
+        <li>project_status: {{ project.project_status }}</li>
+        <li>created_status: {{ project.created_status }}</li>
+        <li>start_date: {{ project.start_date }}</li>
+        <li>stop_date: {{ project.stop_date }}</li>
+        <li>project's employees:
+            [{% for employee in project.employee_set.all %}
+                <a href="{% url 'company:empl_by_id' employee.id %}">{{ employee.name }} ({{ employee.id }})</a>,
+            {% endfor %}]
+        </li>
+
+</body>
+</html>

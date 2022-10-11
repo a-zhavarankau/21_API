@@ -18,14 +18,6 @@ class Department(models.Model):
 class Project(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
-
-    # PLANNED = 'Planned'
-    # ONGOING = 'Ongoing'
-    # STOPPED = 'Stopped'
-    # ROLE_CHOICES = [(PLANNED, 'Planned'), (ONGOING, 'Ongoing'),
-    #                 (STOPPED, 'Stopped')]
-    # project_status = models.CharField(
-    #     max_length=20, choices=ROLE_CHOICES, default=PLANNED)
     project_status = models.CharField(
         max_length=20, choices=[('Planned', 'Planned'), ('Ongoing', 'Ongoing'), ('Stopped', 'Stopped')], default='Planned')
 
@@ -46,20 +38,15 @@ class Employee(models.Model):
     login = models.CharField(max_length=25)
     password = models.CharField(max_length=50)
     email = models.EmailField(max_length=100)
-
-    DEFAULT = 'Default'
-    PM = 'PM'
-    ADMINISTRATOR = 'Administrator'
-    ROLE_CHOICES = [(DEFAULT, 'Default'), (PM, 'PM'),
-                    (ADMINISTRATOR, 'Administrator')]
     employee_role = models.CharField(
-        max_length=20, choices=ROLE_CHOICES, default=DEFAULT)
+        max_length=20, choices=[('Default', 'Default'), ('PM', 'PM'),
+                    ('Administrator', 'Administrator')], default='Default')
 
     salary = models.PositiveIntegerField(default=0)
     department = models.ForeignKey(Department, to_field='id', on_delete=models.CASCADE)       #, default=None)
     last_login_date = models.DateTimeField(auto_now=True)
     created_date = models.DateTimeField(auto_now_add=True)
-    projects = models.ManyToManyField(Project)
+    projects = models.ManyToManyField(Project, blank=True)
 
     class Meta:
         db_table = 'employee'

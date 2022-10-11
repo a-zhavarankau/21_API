@@ -1,29 +1,51 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
-from django.http import Http404
-from company.models import Department, Employee, Project
+from django.views import generic
+from company.models import *
 
 
-def company(request):
-    template = 'company/index.html'
-    return render(request, template)
+class DepartmentsView(generic.ListView):
+    template_name = 'company/departments.html'
+    model = Department
+    context_object_name = 'departments_list'
 
-def deps(request):
-    all_deps = Department.objects.all()
-    context = {'departments_list': all_deps, }
-    template = 'company/departments.html'
-    return render(request, template, context)
+    def get_queryset(self):
+        return Department.objects.all()
 
 
-def dep_by_id(request, dep_id):
-    dep_by_id = get_object_or_404(Department, id=dep_id)
-    context = {'department': dep_by_id, }
-    template = 'company/department_info.html'
-    return render(request, template, context)
+class IndexView(generic.ListView):
+    template_name = 'company/index.html'
+    queryset = ()   # Just to type any queryset
 
 
-def empl(request, empl_id):
-    return HttpResponse(f"You want to see info about employee #{empl_id}")
+class DepartmentView(generic.DetailView):
+    template_name = 'company/department_info.html'
+    model = Department
 
-def proj(request, proj_id):
-    return HttpResponse(f"You want to see info about project #{proj_id}")
+
+class EmployeesView(generic.ListView):
+    template_name = 'company/employees.html'
+    model = Employee
+    context_object_name = 'employees_list'
+
+    def get_queryset(self):
+        return Employee.objects.all()
+
+
+class EmployeeView(generic.DetailView):
+    template_name = 'company/employee_info.html'
+    model = Employee
+
+
+class ProjectsView(generic.ListView):
+    template_name = 'company/projects.html'
+    model = Project
+    context_object_name = 'projects_list'
+
+    def get_queryset(self):
+        return Project.objects.all()
+
+
+class ProjectView(generic.DetailView):
+    template_name = 'company/project_info.html'
+    model = Project
+
+
