@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Company</title>
-</head>
-<body>
-    <h4>Hi there! This is company's main page :)</h4>
+{% extends "company/base.html" %}
 
-    Company consists of:
+{% block title %}
+    Hi there! This is company's main page :)
+    <br>Company consists of:
+{% endblock %}
+
+{% block content %}
         <li><a href="{% url 'company:deps' %}">Departments</a></li>
         <li><a href="{% url 'company:empls' %}">Employees</a></li>
         <li><a href="{% url 'company:projs' %}">Projects</a></li>
-
-
-</body>
-</html>
+{% endblock %}

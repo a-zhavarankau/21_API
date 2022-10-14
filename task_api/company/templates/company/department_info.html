@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Department</title>
-</head>
-<body>
+{% extends "company/base.html" %}
+
+{% block title %}
     Department info:
+{% endblock %}
+
+{% block content %}
         <li>id: {{ department.id }}</li>
         <li>name: {{ department.name }}</li>
         <li>create_date: {{ department.create_date }}</li>
@@ -14,6 +13,4 @@
                 <a href="{% url 'company:empl_by_id' employee.id %}">{{ employee.name }} ({{ employee.id }})</a>,
             {% endfor %}]
         </li>
-
-</body>
-</html>
+{% endblock %}

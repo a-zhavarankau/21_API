@@ -1,5 +1,13 @@
 from django.views import generic
+
+from company.forms import DepartmentForm
 from company.models import *
+from django.shortcuts import render, redirect
+
+
+class IndexView(generic.ListView):
+    template_name = 'company/index.html'
+    queryset = ()   # Just to type any queryset
 
 
 class DepartmentsView(generic.ListView):
@@ -11,14 +19,28 @@ class DepartmentsView(generic.ListView):
         return Department.objects.all()
 
 
-class IndexView(generic.ListView):
-    template_name = 'company/index.html'
-    queryset = ()   # Just to type any queryset
-
-
 class DepartmentView(generic.DetailView):
     template_name = 'company/department_info.html'
     model = Department
+
+
+# class CreateDepartmentView(generic.CreateView):
+#     queryset = ()
+
+def CreateDepartment(request):
+    error = ''
+    if request.method == 'POST':
+        form = DepartmentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/department/")
+        else:
+            error = 'Invalid input data'
+
+    form = DepartmentForm()
+    context = {'form': form, 'error': error}
+    return render(request, 'company/create_department.html', context)
+
 
 
 class EmployeesView(generic.ListView):

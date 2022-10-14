@@ -1,0 +1,15 @@
+{% extends "company/base.html" %}
+
+{% block title %}
+    Create department:
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.name }}<br>
+<!--        <input type="text" placeholder="name" class="form-control"><br>-->
+        <button type="submit" class="btn btn-success">Create</button>
+        <span>{{ error }}</span>
+    </form>
+{% endblock %}

@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Departments</title>
-</head>
-<body>
-    Departments:
-    {% for department in departments_list %}
-        <li>
-            <a href="{% url 'company:dep_by_id' department.id %}">{{ department.name }}</a>
-        </li>
-    {% endfor %}
+{% extends "company/base.html" %}
 
-</body>
-</html>
+{% block title %}
+    Departments in company:
+{% endblock %}
+
+{% block content %}
+    {% if departments_list %}
+        {% for department in departments_list %}
+            <li>
+                <a href="{% url 'company:dep_by_id' department.id %}">{{ department.name }}</a>
+            </li>
+        {% endfor %}
+    {% else %}
+        <p>No data</p>
+    {% endif %}
+{% endblock %}

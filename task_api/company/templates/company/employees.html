@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Employees</title>
-</head>
-<body>
+{% extends "company/base.html" %}
+
+{% block title %}
     Employees in company:
+{% endblock %}
+
+{% block content %}
     {% for employee in employees_list %}
         <li>
             <a href="{% url 'company:empl_by_id' employee.id %}">{{ employee.name }}</a>
         </li>
     {% endfor %}
-
-</body>
-</html>
+{% endblock %}
