@@ -1,6 +1,6 @@
 from django.views import generic
-
-from company.forms import DepartmentForm
+from django.urls import reverse_lazy
+# from company.forms import DepartmentForm
 from company.models import *
 from django.shortcuts import render, redirect
 
@@ -27,20 +27,26 @@ class DepartmentView(generic.DetailView):
 # class CreateDepartmentView(generic.CreateView):
 #     queryset = ()
 
-def CreateDepartment(request):
-    error = ''
-    if request.method == 'POST':
-        form = DepartmentForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("/department/")
-        else:
-            error = 'Invalid input data'
+# def CreateDepartment(request):
+#     error = ''
+#     if request.method == 'POST':
+#         form = DepartmentForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect("/department/")
+#         else:
+#             error = 'Invalid input data'
+#
+#     form = DepartmentForm()
+#     context = {'form': form, 'error': error}
+#     return render(request, 'company/create_department.html', context)
 
-    form = DepartmentForm()
-    context = {'form': form, 'error': error}
-    return render(request, 'company/create_department.html', context)
 
+class CreateNewDepartmentView(generic.CreateView):
+    model = Department
+    fields = '__all__'
+    template_name = 'company/create_new_department.html'
+    success_url = reverse_lazy('company:deps')
 
 
 class EmployeesView(generic.ListView):

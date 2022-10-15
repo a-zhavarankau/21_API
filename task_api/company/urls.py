@@ -12,4 +12,6 @@ urlpatterns = [
     path('project/<int:pk>', views.ProjectView.as_view(), name='proj_by_id'),
     # path('create_department/', views.CreateDepartmentView.as_view(), name='create_dep'),
     path('create_department/', views.CreateDepartment, name='create_dep'),
+    path('create_new_department/', views.CreateNewDepartmentView.as_view(), name='create_new_dep'),
+
 ]

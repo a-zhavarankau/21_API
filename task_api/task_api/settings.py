@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'company.apps.CompanyConfig',
     # 'company',    # <<< redundant
-    'rest_framework'
+    'rest_framework',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
