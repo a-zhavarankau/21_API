@@ -1,9 +1,8 @@
-{% extends "company/navbar_list.html" %}
+{% extends "company/base.html" %}
 {% load widget_tweaks %}
 
-
 {% block title %}
-    Create: {{ title }}
+    Create department:
 {% endblock %}
 
 {% block content %}
@@ -11,8 +10,5 @@
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Save">
-        <a class="btn btn-default" href="{% url 'company:deps' %}">Cancel</a>
     </form>
 {% endblock %}
-
-

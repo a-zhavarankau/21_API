@@ -24,28 +24,28 @@ class DepartmentView(generic.DetailView):
     model = Department
 
 
-# class CreateDepartmentView(generic.CreateView):
-#     queryset = ()
-
-# def CreateDepartment(request):
-#     error = ''
-#     if request.method == 'POST':
-#         form = DepartmentForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect("/department/")
-#         else:
-#             error = 'Invalid input data'
-#
-#     form = DepartmentForm()
-#     context = {'form': form, 'error': error}
-#     return render(request, 'company/create_department.html', context)
-
-
-class CreateNewDepartmentView(generic.CreateView):
+class CreateDepartmentView(generic.CreateView):
     model = Department
     fields = '__all__'
-    template_name = 'company/create_new_department.html'
+    template_name = 'company/create_department.html'
+    success_url = reverse_lazy('company:deps')
+    extra_context = {"extra": "Many-many-extra-context",
+                     'title': 'department',
+                     'create_url': "{% url 'company:create_dep' %}"}
+
+
+class UpdateDepartmentView(generic.UpdateView):
+    model = Department
+    fields = '__all__'
+    # pk_url_kwarg = 'pk'   # ???
+    template_name = 'company/update_department.html'
+    success_url = reverse_lazy('company:deps')
+
+
+class DeleteDepartmentView(generic.DeleteView):
+    model = Department
+    # pk_url_kwarg = 'pk'   # ???
+    template_name = 'company/delete_department.html'
     success_url = reverse_lazy('company:deps')
 
 
@@ -63,6 +63,13 @@ class EmployeeView(generic.DetailView):
     model = Employee
 
 
+class CreateEmployeeView(generic.CreateView):
+    model = Employee
+    fields = '__all__'
+    template_name = 'company/create_employee.html'
+    success_url = reverse_lazy('company:empls')
+
+
 class ProjectsView(generic.ListView):
     template_name = 'company/projects.html'
     model = Project
@@ -77,3 +84,22 @@ class ProjectView(generic.DetailView):
     model = Project
 
 
+class CreateProjectView(generic.CreateView):
+    model = Project
+    fields = '__all__'
+    template_name = 'company/create_project.html'
+    success_url = reverse_lazy('company:projs')
+
+
+def search_1(request):
+    pass
+#     search_result =
+#
+#     query_employees_names_from_department = (
+#         session
+#             .query((Employee.name + " " + Employee.surname).label("fullname"))
+#             .join(Department)
+#             .filter(Department.name == dep_name)
+#     )
+#     context = {'search_result': search_result}
+#     return render(request, 'search.html', context)
