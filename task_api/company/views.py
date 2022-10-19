@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.models import User
+from django.contrib.auth import login, logout
 from company.forms import RegisterUserForm
 from company.models import *
 from django.shortcuts import render, redirect
@@ -98,13 +99,28 @@ class CreateProjectView(generic.CreateView):
 class RegisterUserView(generic.CreateView):
     form_class = RegisterUserForm   # change UserCreationForm with our own new form
     template_name = 'company/register.html'
-    success_url = reverse_lazy('company:login')
+
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('company:index')
+
 
 
 class LoginUserView(LoginView):
-    pass
+    form_class = AuthenticationForm
+    template_name = 'company/login.html'
+
+    def get_success_url(self):               # success_url = reverse_lazy('company:index')
+        return reverse_lazy('company:index') # doesn't work
+    # Instead of the above we can put the next line in the "settings.py":
+    # LOGIN_REDIRECT_URL = "/"
 
 
+def logout_user(request):
+    logout(request)
+    return redirect('company:login')
 
 
 
