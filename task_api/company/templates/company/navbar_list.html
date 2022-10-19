@@ -22,12 +22,19 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'company:projs' %}"><strong>Projects</strong></a>
             </li>
-          </ul>
-
-          <ul class="navbar-nav ms-md-auto">
             <li class="nav-item">
               <a class="nav-link" href="{% url 'company:create_dep' %}">Add_new</a>
             </li>
+          </ul>
+
+          <ul class="navbar-nav ms-md-auto">
+              <li>
+                  <a class="nav-link" href="{% url 'company:login' %}">Login</a>
+              </li>
+              |
+              <li>
+                  <a class="nav-link" href="{% url 'company:register' %}">Register</a>
+              </li>
           </ul>
 
         </div>

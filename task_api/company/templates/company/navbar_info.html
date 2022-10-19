@@ -15,14 +15,21 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'company:deps' %}"><strong>Departments</strong></a>
             </li>
-          </ul>
-          <ul class="navbar-nav ms-md-auto">
             <li class="nav-item">
               <a class="nav-link" href="{% url 'company:update_dep' department.pk %}">Update</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'company:delete_dep' department.pk %}">Delete</a>
             </li>
+          </ul>
+          <ul class="navbar-nav ms-md-auto">
+              <li>
+                  <a class="nav-link" href="{% url 'company:login' %}">Login</a>
+              </li>
+              |
+              <li>
+                  <a class="nav-link" href="{% url 'company:register' %}">Register</a>
+              </li>
           </ul>
         </div>
     </div>

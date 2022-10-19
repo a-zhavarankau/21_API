@@ -1,6 +1,10 @@
 from django.views import generic
 from django.urls import reverse_lazy
-# from company.forms import DepartmentForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.models import User
+from company.forms import RegisterUserForm
 from company.models import *
 from django.shortcuts import render, redirect
 
@@ -89,6 +93,19 @@ class CreateProjectView(generic.CreateView):
     fields = '__all__'
     template_name = 'company/create_project.html'
     success_url = reverse_lazy('company:projs')
+
+
+class RegisterUserView(generic.CreateView):
+    form_class = RegisterUserForm   # change UserCreationForm with our own new form
+    template_name = 'company/register.html'
+    success_url = reverse_lazy('company:login')
+
+
+class LoginUserView(LoginView):
+    pass
+
+
+
 
 
 def search_1(request):

@@ -1,0 +1,14 @@
+{% extends "company/base.html" %}
+
+{% block title %}
+    Registration page:
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Register">
+        <a class="btn btn-default" href="/">Cancel</a>
+    </form>
+{% endblock %}
