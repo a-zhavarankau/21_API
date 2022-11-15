@@ -23,4 +23,8 @@
                 <a href="{% url 'company:proj_by_id' project.id %}">{{ project.name }} ({{ project.id }})</a>,
             {% endfor %}]
         </li>
+        <li>employee photo:
+            {% load static %}
+            <img src="{% static 'company/user.png' %}" width=100px alt="Employee photo">
+        </li>
 {% endblock %}

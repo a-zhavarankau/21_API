@@ -97,15 +97,13 @@ class CreateProjectView(generic.CreateView):
 
 
 class RegisterUserView(generic.CreateView):
-    form_class = RegisterUserForm   # change UserCreationForm with our own new form
+    form_class = RegisterUserForm   # Here UserCreationForm changed with our own new form
     template_name = 'company/register.html'
-
 
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
         return redirect('company:index')
-
 
 
 class LoginUserView(LoginView):
@@ -114,14 +112,13 @@ class LoginUserView(LoginView):
 
     def get_success_url(self):               # success_url = reverse_lazy('company:index')
         return reverse_lazy('company:index') # doesn't work
-    # Instead of the above we can put the next line in the "settings.py":
+    # Instead of the above function we can put the next line in the "settings.py":
     # LOGIN_REDIRECT_URL = "/"
 
 
 def logout_user(request):
     logout(request)
     return redirect('company:login')
-
 
 
 def search_1(request):

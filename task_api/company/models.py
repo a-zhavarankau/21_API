@@ -47,6 +47,7 @@ class Employee(models.Model):
     last_login_date = models.DateTimeField(auto_now=True)
     created_date = models.DateTimeField(auto_now_add=True)
     projects = models.ManyToManyField(Project, blank=True)
+    photo = models.ImageField(upload_to='users', default='default_user_image.png')
 
     class Meta:
         db_table = 'employee'
