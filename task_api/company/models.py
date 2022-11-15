@@ -19,7 +19,8 @@ class Project(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
     project_status = models.CharField(
-        max_length=20, choices=[('Planned', 'Planned'), ('Ongoing', 'Ongoing'), ('Stopped', 'Stopped')], default='Planned')
+        max_length=20, choices=[('Planned', 'Planned'), ('Ongoing', 'Ongoing'),
+                                ('Stopped', 'Stopped')], default='Planned')
 
     created_status = models.BooleanField(default=False)
     start_date = models.DateTimeField(blank=True, null=True)
